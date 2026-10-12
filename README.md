@@ -1,27 +1,23 @@
-# 币圈分流（Shadowrocket）
+# 币圈分流 · Shadowrocket
 
-让常用加密货币服务走 Shadowrocket 当前选中的代理节点，其余流量直连。仓库不包含代理节点、订阅或账户信息。
+本配置以用户提供的「含策略组版本，基于官方群组【懒人配置.conf 2025-02-26 22:31:11】更新，2026-09-16」为基础，保留原有通用分流、DNS、重写和 MITM 设置，并加入加密货币分流。
 
-## 直接导入完整配置
+## 使用
 
-1. 先在 Shadowrocket 首页添加并选中你自己的可用节点。
-2. 在「配置」中通过 URL 下载并使用 [crypto.conf](https://raw.githubusercontent.com/nimingzhe01/bi-fenliu/main/crypto.conf)。
-3. 将全局路由设为「配置」。规则命中的域名使用 `PROXY`，其余请求按 `FINAL,DIRECT` 直连。
-4. 打开 Shadowrocket 的连接记录，确认目标服务显示为 `PROXY`。
+1. 在 Shadowrocket 首页添加你的节点或节点订阅。
+2. 在「配置」中通过 URL 下载并启用 [crypto.conf](https://raw.githubusercontent.com/nimingzhe01/bi-fenliu/main/crypto.conf)。
+3. 把全局路由设为「配置」。
+4. 在策略组 **Crypto** 中选择使用的节点地区，或选择 **全部节点** 后手动选具体节点。默认是 `PROXY`。
+5. 可在连接记录中确认币圈域名命中 **Crypto**。
 
-## 加入现有配置
+## 节点分组
 
-如果你已有自己的 Shadowrocket 配置，无需替换整个配置。在现有配置的 `[Rule]` 中、`FINAL` 规则之前加入：
+配置保留香港、台湾、日本、新加坡、韩国、美国地区组，新增 **全部节点**，用于查看和选择订阅中其他名称的节点。地区组根据节点名称关键词筛选；若订阅没有对应地区的节点，该组仍可能为空。配置文件本身不会生成代理节点。
 
-```ini
-RULE-SET,https://raw.githubusercontent.com/nimingzhe01/bi-fenliu/main/crypto.list,PROXY
-```
+## 币圈规则
 
-规则集只包含匹配条件，使用你的现有配置决定其他流量如何连接。
+内置 25 条 `DOMAIN-SUFFIX` 规则，涵盖常见交易所、行情/DeFi、钱包与区块浏览器。规则放在通用规则之前，命中后交给 **Crypto** 策略组。未命中的流量继续按原配置处理。完整规则见 [crypto.conf](crypto.conf) 的 `[Rule]` 部分。
 
-## 范围与维护
+原配置中部分服务规则使用了与策略组定义不一致的大写名称；现已统一为实际策略组名。此仓库只保留一份可导入的完整配置，不再提供此前独立的 `crypto.list`。
 
-- 涵盖常见交易所、行情/DeFi、钱包和区块浏览器域名；具体条目见 [crypto.list](crypto.list)。
-- `DOMAIN-SUFFIX` 会匹配根域名及其子域名。未列出的域名仍遵循其他规则；在完整配置中会直连。部分 App 使用额外域名时，可根据连接记录补充规则。
-- 规则只改变网络连接方式，不提供节点，也不会替你验证交易平台网址。登录或转账前请自行核对官方域名。
-- 配置不启用 HTTPS 解密、脚本或 URL 重写。
+请使用自己的可信节点与订阅，并在登录、转账前核对服务域名。
