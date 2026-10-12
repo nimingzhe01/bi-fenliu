@@ -1,0 +1,29 @@
+# Crypto rules for Shadowrocket
+# 交易所
+DOMAIN-SUFFIX,binance.com
+DOMAIN-SUFFIX,binance.us
+DOMAIN-SUFFIX,coinbase.com
+DOMAIN-SUFFIX,kraken.com
+DOMAIN-SUFFIX,okx.com
+DOMAIN-SUFFIX,bybit.com
+DOMAIN-SUFFIX,bitget.com
+DOMAIN-SUFFIX,kucoin.com
+DOMAIN-SUFFIX,gate.com
+DOMAIN-SUFFIX,gate.io
+DOMAIN-SUFFIX,crypto.com
+DOMAIN-SUFFIX,mexc.com
+# 行情与 DeFi
+DOMAIN-SUFFIX,coingecko.com
+DOMAIN-SUFFIX,coinmarketcap.com
+DOMAIN-SUFFIX,dexscreener.com
+DOMAIN-SUFFIX,dextools.io
+DOMAIN-SUFFIX,defillama.com
+DOMAIN-SUFFIX,debank.com
+DOMAIN-SUFFIX,uniswap.org
+DOMAIN-SUFFIX,pancakeswap.finance
+# 钱包与区块浏览器
+DOMAIN-SUFFIX,metamask.io
+DOMAIN-SUFFIX,trustwallet.com
+DOMAIN-SUFFIX,etherscan.io
+DOMAIN-SUFFIX,bscscan.com
+DOMAIN-SUFFIX,solscan.io
