@@ -22,8 +22,14 @@
 
 ## 币圈规则
 
-内置 25 条 `DOMAIN-SUFFIX` 规则，涵盖常见交易所、行情/DeFi、钱包与区块浏览器。规则放在通用规则之前，命中后交给 **Crypto** 策略组。未命中的流量继续按原配置处理。完整规则见 [crypto.conf](crypto.conf) 的 `[Rule]` 部分。
+交易所、行情与 DeFi、钱包与区块浏览器的 25 条规则集中保存在 [rules/Crypto.list](rules/Crypto.list)。其[原始下载地址](https://raw.githubusercontent.com/nimingzhe01/bi-fenliu/main/rules/Crypto.list)可单独使用。主配置在通用规则之前通过以下一行加载它，匹配流量交给 **Crypto** 策略组：
 
-原配置中部分服务规则使用了与策略组定义不一致的大写名称；现已统一为实际策略组名。此仓库只保留一份可导入的完整配置，不再提供此前独立的 `crypto.list`。
+```ini
+RULE-SET,https://raw.githubusercontent.com/nimingzhe01/bi-fenliu/main/rules/Crypto.list,Crypto
+```
+
+规则文件只包含匹配条件；`Crypto` 是主配置中的策略组。未命中的流量继续按原配置处理。以后增删币圈域名，只需修改 `rules/Crypto.list` 并在 Shadowrocket 中更新配置或规则集。二维码仍指向主配置，无需更换。
+
+原配置中部分服务规则使用了与策略组定义不一致的大写名称；现已统一为实际策略组名。
 
 请使用自己的可信节点与订阅，并在登录、转账前核对服务域名。
